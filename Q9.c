@@ -1,20 +1,27 @@
 #include <stdio.h>
 
 int main(void) {
-    int n1, n2, tmp, GCD, LCM;
-    scanf("%d%d", &n1, &n2);
-    tmp = n1 % n2;
+    int n1, n2, GCD, LCM, n1_origin, n2_origin;
+    scanf("%d %d", &n1, &n2);
+    n1_origin = n1;
+    n2_origin = n2;
 
-    while (tmp != 0) {
-        if (n2 % tmp != 0) {
-            tmp = n2 % tmp;
+    while (n1 > 0 && n2 > 0) {
+        if (n1 > n2) {
+            n1 = n1 % n2;
         }
         else {
-            GCD = tmp;
-            break;
+            n2 = n2 % n1;
+        }
+
+        if (n1 == 0) {
+            GCD = n2;
+        }
+        else {
+            GCD = n1;
         }
     }
-    LCM = (n1 / GCD) * (n2 / GCD) * GCD;
+    LCM = (n1_origin / GCD) * (n2_origin / GCD) * GCD;
     
     printf("%d\n", GCD);
     printf("%d\n", LCM);
